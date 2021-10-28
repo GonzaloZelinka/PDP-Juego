@@ -24,19 +24,15 @@ Object subclass: #Ficha
     .! ! 
 
 Array2D subclass: #Tablero
-    instanceVariableNames: 'tablero'
+    instanceVariableNames: 'cant_fichas'
     classVariableNames: ''
     category: 'Senku'!
 
-!Tablero methodsFor: 'initialize' stamp: 'GRUPO5 10/27/2021 09:09'!
-        super initialize. 
-        tablero:= Array2D new: 11. 
-        1 to: 11 do:[:i | 
-            1 to: 11 do:[:j| 
-                arreglo at:i at:j put: Ficha new]].
-        1 to: 11 do:[:i | 
-            1 to:11 do:[:j| 
-                (arreglo at:i at:j) estado: 1]].! !
+
+!Tablero methodsFor: 'accesing' stamp: 'GRUPO5 10/27/2021 09:09'!
+    cargarTablero
+        
+
 
 !Tablero methodsFor: 'all' stamp: 'GRUPO5 10/27/2021 09:09'!
     saltar: i j m n
