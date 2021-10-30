@@ -1,20 +1,129 @@
-Object subclass: #Ficha	instanceVariableNames: 'estado'	classVariableNames: ''	poolDictionaries: ''	category: 'Senku'!!Ficha commentStamp: 'GRUPO5 10/28/2021 10:27' prior: 0!Esta clase se encarga de todo lo relacionado con la fichas de cada tablero. 
+Object subclass: #Ficha
+	instanceVariableNames: 'estado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Senku'!
+!Ficha commentStamp: 'GRUPO5 10/28/2021 10:27' prior: 0!
+Esta clase se encarga de todo lo relacionado con la fichas de cada tablero. 
 Sus funciones son: cambiar el estado de la ficha (0 y 1). 
-!!Ficha methodsFor: 'all' stamp: 'GRUPO5 10/28/2021 10:43'!colocar_ficha
+!
+
+
+!Ficha methodsFor: 'all' stamp: 'GRUPO5 10/28/2021 10:43'!
+colocar_ficha
 	"cambia el estado de una ficha a lleno"
-	self estado: 1.! !!Ficha methodsFor: 'all' stamp: 'GRUPO5 10/28/2021 10:43'!eliminar_ficha
+	self estado: 1.! !
+
+!Ficha methodsFor: 'all' stamp: 'GRUPO5 10/28/2021 10:43'!
+eliminar_ficha
 	"cambia el estado de una ficha a vacio"
-	self estado: 0.! !!Ficha methodsFor: 'acccessing' stamp: 'GRUPO5 10/28/2021 09:17'!estado
+	self estado: 0.! !
+
+
+!Ficha methodsFor: 'acccessing' stamp: 'GRUPO5 10/28/2021 09:17'!
+estado
 	"getter del estado"
-	^estado! !!Ficha methodsFor: 'acccessing' stamp: 'GRUPO5 10/28/2021 09:16'!estado: unEstado
+	^estado! !
+
+!Ficha methodsFor: 'acccessing' stamp: 'GRUPO5 10/28/2021 09:16'!
+estado: unEstado
 	"setter del estado"
-	estado:= unEstado.! !PackageManifest subclass: #ManifestSenku	instanceVariableNames: ''	classVariableNames: ''	poolDictionaries: ''	category: 'Senku'!!ManifestSenku commentStamp: '<historical>' prior: 0!I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser!"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!ManifestSenku class	instanceVariableNames: ''!!ManifestSenku class methodsFor: 'code-critics' stamp: 'GRUPO5 10/28/2021 10:20'!ruleRBLongMethodsRuleV1FalsePositive
-	^ #(#(#(#RGClassDefinition #(#Tablero)) #'2021-10-28T10:20:50.152728-03:00') )! !!ManifestSenku class methodsFor: 'code-critics' stamp: 'Anonymous 10/30/2021 02:16'!ruleRBCodeCruftLeftInMethodsRuleV1FalsePositive	^ #(#(#(#RGMethodDefinition #(#Tablero #mostrarTablero #false)) #'2021-10-28T10:20:32.259728-03:00') #(#(#RGClassDefinition #(#Tablero)) #'2021-10-28T10:20:46.921728-03:00') #(#(#RGPackage #(#Senku)) #'2021-10-30T02:16:12.211556-03:00') )! !!ManifestSenku class methodsFor: 'code-critics' stamp: 'GRUPO5 10/28/2021 11:26'!ruleRBExcessiveArgumentsRuleV1FalsePositive
-	^ #(#(#(#RGClassDefinition #(#Tablero)) #'2021-10-28T11:26:01.787728-03:00') )! !Object subclass: #Senku	instanceVariableNames: 'tipoTablero'	classVariableNames: ''	poolDictionaries: ''	category: 'Senku'!!Senku methodsFor: 'initialization' stamp: 'Anonymous 10/29/2021 20:51'!initialize	"inicializa el tipoTablero en 1"	super initialize.	tipoTablero:=1.! !!Senku methodsFor: 'selection' stamp: 'Anonymous 10/30/2021 00:01'!elegirTablero	"Despliega menu de elección de tablero"	self tipoTablero: (UIManager default chooseFrom: #('TABLERO CUADRADO 11x11' 'TABLERO CRUZ' 'TABLERO DIAMANTE') values:#(1 2 3 4 ) lines: #(1 2 3 4) title: #('ELIJA EL TIPO DE TABLERO EN EL QUE DESEA JUGAR')).	tipoTablero ifNil: [ self elegirTablero  ].	^tipoTablero! !!Senku methodsFor: 'accesing' stamp: 'Anonymous 10/29/2021 20:48'!tipoTablero	"acceso a la variable de tipoTablero"	^tipoTablero ! !!Senku methodsFor: 'accesing' stamp: 'Anonymous 10/29/2021 20:49'!tipoTablero: argumento	"acceso a la variable de tipoTablero"	^tipoTablero:= argumento .! !Array2D subclass: #Tablero	instanceVariableNames: 'cant_fichas'	classVariableNames: ''	poolDictionaries: ''	category: 'Senku'!!Tablero commentStamp: 'GRUPO5 10/28/2021 10:29' prior: 0!Esta subclase se encarga del tablero de juego, donde se encuentran el conjunto de fichas que se pueden ir moviendo.
-Sus funciones son: cargar el tablero, mostrarlo y realizar los movimientos de las fichas. !!Tablero methodsFor: 'loading' stamp: 'Anonymous 10/30/2021 12:52'!cargaTablero
-	"metodo que carga el tablero"	^self subclassResponsibility 	
+	estado:= unEstado.! !
+
+
+PackageManifest subclass: #ManifestSenku
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Senku'!
+!ManifestSenku commentStamp: '<historical>' prior: 0!
+I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+ManifestSenku class
+	instanceVariableNames: ''!
+
+!ManifestSenku class methodsFor: 'code-critics' stamp: 'GRUPO5 10/28/2021 10:20'!
+ruleRBLongMethodsRuleV1FalsePositive
+	^ #(#(#(#RGClassDefinition #(#Tablero)) #'2021-10-28T10:20:50.152728-03:00') )! !
+
+!ManifestSenku class methodsFor: 'code-critics' stamp: 'Anonymous 10/30/2021 02:16'!
+ruleRBCodeCruftLeftInMethodsRuleV1FalsePositive
+	^ #(#(#(#RGMethodDefinition #(#Tablero #mostrarTablero #false)) #'2021-10-28T10:20:32.259728-03:00') #(#(#RGClassDefinition #(#Tablero)) #'2021-10-28T10:20:46.921728-03:00') #(#(#RGPackage #(#Senku)) #'2021-10-30T02:16:12.211556-03:00') )! !
+
+!ManifestSenku class methodsFor: 'code-critics' stamp: 'GRUPO5 10/28/2021 11:26'!
+ruleRBExcessiveArgumentsRuleV1FalsePositive
+	^ #(#(#(#RGClassDefinition #(#Tablero)) #'2021-10-28T11:26:01.787728-03:00') )! !
+
+
+Object subclass: #Senku
+	instanceVariableNames: 'tipoTablero'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Senku'!
+
+!Senku methodsFor: 'initialization' stamp: 'Anonymous 10/29/2021 20:51'!
+initialize
+	"inicializa el tipoTablero en 1"
+	super initialize.
+	tipoTablero:=1.! !
+
+
+!Senku methodsFor: 'selection' stamp: 'Anonymous 10/30/2021 00:01'!
+elegirTablero
+	"Despliega menu de elección de tablero"
+	self tipoTablero: (UIManager default chooseFrom: #('TABLERO CUADRADO 11x11' 'TABLERO CRUZ' 'TABLERO DIAMANTE') values:#(1 2 3 4 ) lines: #(1 2 3 4) title: #('ELIJA EL TIPO DE TABLERO EN EL QUE DESEA JUGAR')).
+	tipoTablero ifNil: [ self elegirTablero  ].
+	^tipoTablero! !
+
+
+!Senku methodsFor: 'accesing' stamp: 'Anonymous 10/29/2021 20:48'!
+tipoTablero
+	"acceso a la variable de tipoTablero"
+	^tipoTablero ! !
+
+!Senku methodsFor: 'accesing' stamp: 'Anonymous 10/29/2021 20:49'!
+tipoTablero: argumento
+	"acceso a la variable de tipoTablero"
+	^tipoTablero:= argumento .! !
+
+
+Array2D subclass: #Tablero
+	instanceVariableNames: 'cant_fichas'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Senku'!
+!Tablero commentStamp: 'GRUPO5 10/28/2021 10:29' prior: 0!
+Esta subclase se encarga del tablero de juego, donde se encuentran el conjunto de fichas que se pueden ir moviendo.
+Sus funciones son: cargar el tablero, mostrarlo y realizar los movimientos de las fichas. !
+
+
+!Tablero methodsFor: 'loading' stamp: 'Anonymous 10/30/2021 12:52'!
+cargaTablero
+	"metodo que carga el tablero"
+
+	^self subclassResponsibility 
+
 	
-	! !!Tablero methodsFor: 'printing' stamp: 'Anonymous 10/30/2021 12:53'!mostrarTablero "metodo que muestra el tablero"	^self subclassResponsibility ! !!Tablero methodsFor: 'printing' stamp: 'Anonymous 10/28/2021 18:25'!mensajeMovInvalido	"Mensaje por movimiento invalido"	UIManager default alert: 'EL MOVIMIENTO ES INVALIDO' title: 'ERROR'	! !!Tablero methodsFor: 'selection' stamp: 'GRUPO5 10/28/2021 12:08'!seleccionFila
+	
+	! !
+
+
+!Tablero methodsFor: 'printing' stamp: 'Anonymous 10/30/2021 12:53'!
+mostrarTablero 
+"metodo que muestra el tablero"
+	^self subclassResponsibility ! !
+
+!Tablero methodsFor: 'printing' stamp: 'Anonymous 10/28/2021 18:25'!
+mensajeMovInvalido
+	"Mensaje por movimiento invalido"
+	UIManager default alert: 'EL MOVIMIENTO ES INVALIDO' title: 'ERROR'
+	! !
+
+
+!Tablero methodsFor: 'selection' stamp: 'GRUPO5 10/28/2021 12:08'!
+seleccionFila
 	"Seleccionar la fila que se debe mover la ficha"
 	|fila|
 	fila:=UIManager default
@@ -22,7 +131,10 @@ Sus funciones son: cargar el tablero, mostrarlo y realizar los movimientos de la
     	values: #(1 2 3 4 5 6 7 8 9 10 11)
     	lines: #(1 2 3 4 5 6 7 8 9 10 11)
     	title: 'SELECCIONE FILA'.
-	^fila! !!Tablero methodsFor: 'selection' stamp: 'GRUPO5 10/28/2021 12:10'!seleccionColumna
+	^fila! !
+
+!Tablero methodsFor: 'selection' stamp: 'GRUPO5 10/28/2021 12:10'!
+seleccionColumna
 	"Seleccionar la columna que se debe mover la ficha"
 	|columna|
 	columna:=UIManager default
@@ -30,7 +142,10 @@ Sus funciones son: cargar el tablero, mostrarlo y realizar los movimientos de la
     	values: #(1 2 3 4 5 6 7 8 9 10 11)
     	lines: #(1 2 3 4 5 6 7 8 9 10 11)
     	title: 'SELECCIONE COLUMNA'.
-	^columna! !!Tablero methodsFor: 'selection' stamp: 'GRUPO5 10/28/2021 12:10'!seleccionDireccion
+	^columna! !
+
+!Tablero methodsFor: 'selection' stamp: 'GRUPO5 10/28/2021 12:10'!
+seleccionDireccion
 	"Seleccionar la direccion que se debe mover la ficha"
 	|direccion|
 	direccion:=UIManager default
@@ -38,30 +153,227 @@ Sus funciones son: cargar el tablero, mostrarlo y realizar los movimientos de la
     	values: #(1 2 3 4)
     	lines: #(1 2 3 4)
     	title: 'SELECCIONE DIRECCIÓN'.
-	^direccion! !!Tablero methodsFor: 'accessing' stamp: 'GRUPO5 10/28/2021 09:27'!cant_fichas: unValor
+	^direccion! !
+
+
+!Tablero methodsFor: 'accessing' stamp: 'GRUPO5 10/28/2021 09:27'!
+cant_fichas: unValor
 	"modifica la cantidad de fichas"
-	cant_fichas:= unValor.! !!Tablero methodsFor: 'accessing' stamp: 'GRUPO5 10/28/2021 09:27'!cant_fichas
+	cant_fichas:= unValor.! !
+
+!Tablero methodsFor: 'accessing' stamp: 'GRUPO5 10/28/2021 09:27'!
+cant_fichas
 	"modifica la cantidad de fichas"
-	^cant_fichas.! !!Tablero methodsFor: 'testing' stamp: 'Anonymous 10/30/2021 14:28'!verificarSalto: direccion i: i j: j	"Metodo no implementado, de verificacion de salto"	self subclassResponsibility ! !!Tablero methodsFor: 'testing' stamp: 'Anonymous 10/28/2021 16:38'!verificarFinJuego
+	^cant_fichas.! !
+
+
+!Tablero methodsFor: 'testing' stamp: 'Anonymous 10/30/2021 14:28'!
+verificarSalto: direccion i: i j: j
+	"Metodo no implementado, de verificacion de salto"
+	self subclassResponsibility ! !
+
+!Tablero methodsFor: 'testing' stamp: 'Anonymous 10/28/2021 16:38'!
+verificarFinJuego
 	"metodo que se encarga de finalizar el juego"
 	(cant_fichas = 1) 
-	ifTrue: [UIManager default alert: '¡FELICIDADES, HAS GANADO!!' title: 'FIN DEL JUEGO'. 				^true]	ifFalse:[ 1 to:11 do:[:i| 					1 to:11 do:[ :j|						1 to:4 do:[ :d| (self verificar_salto: d i: i j: j) ifTrue:[ ^false ].									 ].								  ].								].				].	UIManager default alert: 'HAS PERDIDO' title: 'FIN DEL JUEGO'.	^true
+	ifTrue: [UIManager default alert: '¡FELICIDADES, HAS GANADO!!' title: 'FIN DEL JUEGO'. 
+				^true]
+	ifFalse:[ 1 to:11 do:[:i| 
+					1 to:11 do:[ :j|
+						1 to:4 do:[ :d| (self verificar_salto: d i: i j: j) ifTrue:[ ^false ].
+									 ].
+								  ].
+								].
+				].
+	UIManager default alert: 'HAS PERDIDO' title: 'FIN DEL JUEGO'.
+	^true
 	
 	
 	
-	! !!Tablero methodsFor: 'moves' stamp: 'Anonymous 10/28/2021 18:49'!saltar: direccion atI: i atJ: j
-	"cambia el estado de la ficha actual y el de la ficha (m n)"	|m n|
+	! !
+
+
+!Tablero methodsFor: 'moves' stamp: 'Anonymous 10/28/2021 18:49'!
+saltar: direccion atI: i atJ: j
+	"cambia el estado de la ficha actual y el de la ficha (m n)"
+	|m n|
    (self at:i at:j) estado: 0.
-	(direccion = 1)ifTrue: [ (self at: i at: j+1) estado: 0.									m:=i.									n:= j+2].
-	(direccion = 2)ifTrue: [ (self at: i at: j-1) estado: 0.									m:=i.									n:= j-2].
-	(direccion = 3)ifTrue: [ (self at: i-1 at: j) estado: 0.									m:=i-2.									n:= j].
-	(direccion = 4)ifTrue: [ (self at: i+1 at: j) estado: 0.									m:=i+2.									n:= j].
+	(direccion = 1)ifTrue: [ (self at: i at: j+1) estado: 0.
+									m:=i.
+									n:= j+2].
+	(direccion = 2)ifTrue: [ (self at: i at: j-1) estado: 0.
+									m:=i.
+									n:= j-2].
+	(direccion = 3)ifTrue: [ (self at: i-1 at: j) estado: 0.
+									m:=i-2.
+									n:= j].
+	(direccion = 4)ifTrue: [ (self at: i+1 at: j) estado: 0.
+									m:=i+2.
+									n:= j].
    (self at: m at: n) estado: 1.
-   self cant_fichas: (cant_fichas  - 1).! !"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!Tablero class	instanceVariableNames: ''!!Tablero class methodsFor: 'creating' stamp: 'Anonymous 10/30/2021 12:51'!nuevo: tipo_tab tamaño: tamaño	"Instancia la clase de Tablero segun el tipo seleccionado"	(tipo_tab = 1) ifTrue:[ ^TableroCuadrado new:tamaño ]. 	(tipo_tab = 2) ifTrue:[ ^TableroCruz new:tamaño ]. 	(tipo_tab = 3) ifTrue:[ ^TableroDiamante new:tamaño ].! !Tablero subclass: #TableroCruz	instanceVariableNames: ''	classVariableNames: ''	poolDictionaries: ''	category: 'Senku'!!TableroCruz methodsFor: 'printing' stamp: 'Anonymous 10/30/2021 12:53'!mostrarTablero"metodo que muestra el tablero cruz"	|letras|	Transcript clear.	letras:=('ABCDEFGHIJK').	Transcript cr.	Transcript show: ('       A   B   C   D   E   F   G   H   I   J   K   ').	Transcript cr.	Transcript show: ('                                                  ').	Transcript cr.	Transcript show: ('                 ┌───┬───┬───┬───┬───┐ ').	Transcript cr.	1 to:3 do:[:i | Transcript show:' '.                   Transcript show: (letras at:i).  						 Transcript show:'               │'.						 4 to:8 do:[:j| Transcript show:' '.                                   Transcript show: (self at:i at:j) estado.                                   Transcript show:' │'].                   Transcript cr.						i<3 ifTrue:[  Transcript show: ('                 ├───┼───┼───┼───┼───┤ ')]							 ifFalse:[ Transcript show: ('     ┌───┬───┬───┼───┼───┼───┼───┼───┼───┬───┬───┐ ') ].						Transcript cr.].						4 to:8 do:[:i | Transcript show:' '.                   Transcript show: (letras at:i).                   Transcript show:'   │'. 						 1 to:11 do:[:j| Transcript show:' '.                                            Transcript show: (self at:i at:j) estado.                                            Transcript show:' │'].                        Transcript cr.							  i<8 ifTrue:[   Transcript show: ('     ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤ ')]									 ifFalse:[ Transcript show: ('     └───┴───┴───┼───┼───┼───┼───┼───┼───┴───┴───┘ ') ].                        Transcript cr].	9 to:11 do:[:i |Transcript show:' '.                   Transcript show: (letras at:i).  						 Transcript show:'               │'.						 4 to:8 do:[:j| Transcript show:' '.                                   Transcript show: (self at:i at:j) estado.                                   Transcript show:' │'].                   Transcript cr.						i<11 ifTrue:[ Transcript show: ('                 ├───┼───┼───┼───┼───┤ ')]							 ifFalse:[ Transcript show: ('                 └───┴───┴───┴───┴───┘ ') ].						Transcript cr.].! !!TableroCruz methodsFor: 'loading' stamp: 'Anonymous 10/30/2021 12:53'!cargaTablero
-	"metodo que carga el tableroCruz"	self cant_fichas:  84.	1 to: 11 do: [:i| 		1 to:11 do:[:j |			self at:i at:j put: Ficha new] ]."carga fichas"	1 to: 3 do:[:i | 		1 to:3 do:[:j| 			(self at:i at:j) estado:' '.]. "cuadrante izquierdo superior que no se ocupa"		4 to:8 do:[:j| 			(self at:i at:j) estado:'◙'.]. "franja del medio superior que si se ocupa"		9 to:11 do:[:j| 			(self at:i at:j) estado:' '.].]."cuadrante derecho superior que no se ocupa"	4 to: 8 do:[:i | 		1 to:11 do:[:j| 			(self at:i at:j) estado:'◙'.].]."franja alargada del medio que si se ocupa"	9 to: 11 do:[:i | 		1 to:3 do:[:j| 			(self at:i at:j) estado:' '.]."cuadrante izquierdo inferior que no se ocupa"		4 to:8 do:[:j| 			(self at:i at:j) estado:'◙'.]."franja del medio inferior que si se ocupa"		9 to:11 do:[:j| 			(self at:i at:j) estado:' '.].]."cuadrante izquierdo inferior que no se ocupa"	(self at:6 at:6) estado: 'o'.	
+   self cant_fichas: (cant_fichas  - 1).! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Tablero class
+	instanceVariableNames: ''!
+
+!Tablero class methodsFor: 'creating' stamp: 'Anonymous 10/30/2021 12:51'!
+nuevo: tipo_tab tamaño: tamaño
+	"Instancia la clase de Tablero segun el tipo seleccionado"
+
+	(tipo_tab = 1) ifTrue:[ ^TableroCuadrado new:tamaño ]. 
+	(tipo_tab = 2) ifTrue:[ ^TableroCruz new:tamaño ]. 
+	(tipo_tab = 3) ifTrue:[ ^TableroDiamante new:tamaño ].! !
+
+
+Tablero subclass: #TableroCruz
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Senku'!
+
+!TableroCruz methodsFor: 'printing' stamp: 'Anonymous 10/30/2021 12:53'!
+mostrarTablero
+"metodo que muestra el tablero cruz"
+	|letras|
+	Transcript clear.
+	letras:=('ABCDEFGHIJK').
+	Transcript cr.
+	Transcript show: ('       A   B   C   D   E   F   G   H   I   J   K   ').
+	Transcript cr.
+	Transcript show: ('                                                  ').
+	Transcript cr.
+	Transcript show: ('                 ┌───┬───┬───┬───┬───┐ ').
+	Transcript cr.
+	1 to:3 do:[:i | Transcript show:' '.
+                   Transcript show: (letras at:i).  
+						 Transcript show:'               │'.
+						 4 to:8 do:[:j| Transcript show:' '.
+                                   Transcript show: (self at:i at:j) estado.
+                                   Transcript show:' │'].
+                   Transcript cr.
+						i<3 ifTrue:[  Transcript show: ('                 ├───┼───┼───┼───┼───┤ ')]
+							 ifFalse:[ Transcript show: ('     ┌───┬───┬───┼───┼───┼───┼───┼───┼───┬───┬───┐ ') ].
+						Transcript cr.].
+					
+	4 to:8 do:[:i | Transcript show:' '.
+                   Transcript show: (letras at:i).
+                   Transcript show:'   │'. 
+						 1 to:11 do:[:j| Transcript show:' '.
+                                            Transcript show: (self at:i at:j) estado.
+                                            Transcript show:' │'].
+                        Transcript cr.
+							  i<8 ifTrue:[   Transcript show: ('     ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤ ')]
+									 ifFalse:[ Transcript show: ('     └───┴───┴───┼───┼───┼───┼───┼───┼───┴───┴───┘ ') ].
+                        Transcript cr].
+
+	9 to:11 do:[:i |Transcript show:' '.
+                   Transcript show: (letras at:i).  
+						 Transcript show:'               │'.
+						 4 to:8 do:[:j| Transcript show:' '.
+                                   Transcript show: (self at:i at:j) estado.
+                                   Transcript show:' │'].
+                   Transcript cr.
+						i<11 ifTrue:[ Transcript show: ('                 ├───┼───┼───┼───┼───┤ ')]
+							 ifFalse:[ Transcript show: ('                 └───┴───┴───┴───┴───┘ ') ].
+						Transcript cr.].
+! !
+
+
+!TableroCruz methodsFor: 'loading' stamp: 'Anonymous 10/30/2021 12:53'!
+cargaTablero
+	"metodo que carga el tableroCruz"
+	self cant_fichas:  84.
+	1 to: 11 do: [:i| 
+		1 to:11 do:[:j |
+			self at:i at:j put: Ficha new] ]."carga fichas"
+	1 to: 3 do:[:i | 
+		1 to:3 do:[:j| 
+			(self at:i at:j) estado:' '.]. "cuadrante izquierdo superior que no se ocupa"
+		4 to:8 do:[:j| 
+			(self at:i at:j) estado:'◙'.]. "franja del medio superior que si se ocupa"
+		9 to:11 do:[:j| 
+			(self at:i at:j) estado:' '.].]."cuadrante derecho superior que no se ocupa"
+	4 to: 8 do:[:i | 
+		1 to:11 do:[:j| 
+			(self at:i at:j) estado:'◙'.].]."franja alargada del medio que si se ocupa"
+	9 to: 11 do:[:i | 
+		1 to:3 do:[:j| 
+			(self at:i at:j) estado:' '.]."cuadrante izquierdo inferior que no se ocupa"
+		4 to:8 do:[:j| 
+			(self at:i at:j) estado:'◙'.]."franja del medio inferior que si se ocupa"
+		9 to:11 do:[:j| 
+			(self at:i at:j) estado:' '.].]."cuadrante izquierdo inferior que no se ocupa"
+	(self at:6 at:6) estado: 'o'.
 	
-	! !!TableroCruz methodsFor: 'testing' stamp: 'Anonymous 10/30/2021 14:25'!verificarSalto: direccion i: i j: j 
-    "verifica si un salto es válido en base a la direccion y la posicion actual"    |pos_validas|    pos_validas:=#(1 2 3 4 5 6 7 8 9 10 11)."(n= 11 array new: n| despues cargar con con un 1 to: n) puede ser"    ((pos_validas includes: i) and: (pos_validas includes: j)) 		ifTrue:[    		(self at: i at: j) estado = '◙' 				ifTrue:[					(direccion=1) 		"Derecha"     	   				ifTrue:[ ((pos_validas includes: j+1) and: (pos_validas includes:j+2)) 											ifTrue:[												((self at: i at:j+1) estado='◙' and: ((self at: i at:j+2) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].				    			(direccion=2) 		"Izquierda"						ifTrue:[ ((pos_validas includes: j-1) and: (pos_validas includes:j-2)) 											ifTrue:[												((self at: i at:j-1) estado='◙' and: ((self at: i at:j-2) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].							(direccion=3) 		"Arriba"							ifTrue:[ ((pos_validas includes: i-1) and: (pos_validas includes:i-2)) 											ifTrue:[												((self at: i-1 at:j) estado='◙' and: ((self at: i-2 at:j) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].									(direccion=4) 		"Abajo"							ifTrue:[ ((pos_validas includes: i+1) and: (pos_validas includes:i+2)) 											ifTrue:[												((self at: i+1 at:j) estado='◙' and: ((self at: i+2 at:j) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].]						ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA YA ESTA VACIA' title: 'ERROR'.						 ^false]]		ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA ES INVALIDA' title: 'ERROR'.					^false].! !Tablero subclass: #TableroCuadrado	instanceVariableNames: ''	classVariableNames: ''	poolDictionaries: ''	category: 'Senku'!!TableroCuadrado methodsFor: 'loading' stamp: 'Anonymous 10/30/2021 12:54'!cargaTablero
+	
+	! !
+
+
+!TableroCruz methodsFor: 'testing' stamp: 'Anonymous 10/30/2021 14:25'!
+verificarSalto: direccion i: i j: j 
+    "verifica si un salto es válido en base a la direccion y la posicion actual"
+    |pos_validas|
+    pos_validas:=#(1 2 3 4 5 6 7 8 9 10 11).
+    ((pos_validas includes: i) and: (pos_validas includes: j)) 
+		ifTrue:[
+    		(self at: i at: j) estado = '◙' 
+				ifTrue:[
+					(direccion=1) 		"Derecha"
+     	   				ifTrue:[ ((pos_validas includes: j+1) and: (pos_validas includes:j+2)) 
+											ifTrue:[
+												((self at: i at:j+1) estado='◙' and: ((self at: i at:j+2) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].
+			
+	    			(direccion=2) 		"Izquierda"
+						ifTrue:[ ((pos_validas includes: j-1) and: (pos_validas includes:j-2)) 
+											ifTrue:[
+												((self at: i at:j-1) estado='◙' and: ((self at: i at:j-2) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].
+		
+					(direccion=3) 		"Arriba"
+							ifTrue:[ ((pos_validas includes: i-1) and: (pos_validas includes:i-2)) 
+											ifTrue:[
+												((self at: i-1 at:j) estado='◙' and: ((self at: i-2 at:j) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].
+				
+					(direccion=4) 		"Abajo"
+							ifTrue:[ ((pos_validas includes: i+1) and: (pos_validas includes:i+2)) 
+											ifTrue:[
+												((self at: i+1 at:j) estado='◙' and: ((self at: i+2 at:j) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].]
+			
+			ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA YA ESTA VACIA' title: 'ERROR'.
+						 ^false]]
+		ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA ES INVALIDA' title: 'ERROR'.
+					^false].! !
+
+
+Tablero subclass: #TableroCuadrado
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Senku'!
+
+!TableroCuadrado methodsFor: 'loading' stamp: 'Anonymous 10/30/2021 12:54'!
+cargaTablero
 	"metodo que carga el tableroCuadrado"
 	self cant_fichas: 120.
 	1 to: 11 do: [:i| 
@@ -70,25 +382,66 @@ Sus funciones son: cargar el tablero, mostrarlo y realizar los movimientos de la
 	1 to: 11 do:[:i | 1 to:11 do:[:j| (self at:i at:j) estado:'◙'.].].
 	(self at:6 at:6) estado: 'o'.
 	
-	! !!TableroCuadrado methodsFor: 'testing' stamp: 'Anonymous 10/30/2021 12:57'!verificarSalto: direccion i: i j: j 
+	! !
+
+
+!TableroCuadrado methodsFor: 'testing' stamp: 'Anonymous 10/30/2021 12:57'!
+verificarSalto: direccion i: i j: j 
     "verifica si un salto es válido en base a la direccion y la posicion actual"
     |pos_validas|
     pos_validas:=#(1 2 3 4 5 6 7 8 9 10 11)."(n= 11 array new: n| despues cargar con con un 1 to: n) puede ser"
-    ((pos_validas includes: i) and: (pos_validas includes: j)) 		ifTrue:[
-    		(self at: i at: j) estado = '◙' 				ifTrue:[
+    ((pos_validas includes: i) and: (pos_validas includes: j)) 
+		ifTrue:[
+    		(self at: i at: j) estado = '◙' 
+				ifTrue:[
 					(direccion=1) 		"Derecha"
-     	   				ifTrue:[ ((pos_validas includes: j+1) and: (pos_validas includes:j+2)) 											ifTrue:[												((self at: i at:j+1) estado='◙' and: ((self at: i at:j+2) estado='o')) 
+     	   				ifTrue:[ ((pos_validas includes: j+1) and: (pos_validas includes:j+2)) 
+											ifTrue:[
+												((self at: i at:j+1) estado='◙' and: ((self at: i at:j+2) estado='o')) 
 															ifTrue:[ ^true ]
-															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].
 			
-	    			(direccion=2) 		"Izquierda"						ifTrue:[ ((pos_validas includes: j-1) and: (pos_validas includes:j-2)) 											ifTrue:[												((self at: i at:j-1) estado='◙' and: ((self at: i at:j-2) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].
+	    			(direccion=2) 		"Izquierda"
+						ifTrue:[ ((pos_validas includes: j-1) and: (pos_validas includes:j-2)) 
+											ifTrue:[
+												((self at: i at:j-1) estado='◙' and: ((self at: i at:j-2) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].
 		
-					(direccion=3) 		"Arriba"							ifTrue:[ ((pos_validas includes: i-1) and: (pos_validas includes:i-2)) 											ifTrue:[												((self at: i-1 at:j) estado='◙' and: ((self at: i-2 at:j) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].
+					(direccion=3) 		"Arriba"
+							ifTrue:[ ((pos_validas includes: i-1) and: (pos_validas includes:i-2)) 
+											ifTrue:[
+												((self at: i-1 at:j) estado='◙' and: ((self at: i-2 at:j) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].
 				
-					(direccion=4) 		"Abajo"							ifTrue:[ ((pos_validas includes: i+1) and: (pos_validas includes:i+2)) 											ifTrue:[												((self at: i+1 at:j) estado='◙' and: ((self at: i+2 at:j) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].]
+					(direccion=4) 		"Abajo"
+							ifTrue:[ ((pos_validas includes: i+1) and: (pos_validas includes:i+2)) 
+											ifTrue:[
+												((self at: i+1 at:j) estado='◙' and: ((self at: i+2 at:j) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].]
 			
-			ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA YA ESTA VACIA' title: 'ERROR'.						 ^false]]
-		ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA ES INVALIDA' title: 'ERROR'.					^false].! !!TableroCuadrado methodsFor: 'printing' stamp: 'Anonymous 10/30/2021 12:54'!mostrarTablero
+			ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA YA ESTA VACIA' title: 'ERROR'.
+						 ^false]]
+		ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA ES INVALIDA' title: 'ERROR'.
+					^false].! !
+
+
+!TableroCuadrado methodsFor: 'printing' stamp: 'Anonymous 10/30/2021 12:54'!
+mostrarTablero
 	"metodo que carga el tablero cuadrado"
 	|letras|
 	Transcript clear.
@@ -106,8 +459,178 @@ Sus funciones son: cargar el tablero, mostrarlo y realizar los movimientos de la
                       1 to:11 do:[:j| Transcript show:' '.
                                             Transcript show: (self at:i at:j) estado.
                                             Transcript show:' │'].
-                        Transcript cr.							  i<11 ifTrue:[ Transcript show: ('     ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤ ')]									 ifFalse:[ Transcript show: ('     └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘ ') ].
+                        Transcript cr.
+							  i<11 ifTrue:[ Transcript show: ('     ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤ ')]
+									 ifFalse:[ Transcript show: ('     └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘ ') ].
                         Transcript cr].
 	
-	! !Tablero subclass: #TableroDiamante	instanceVariableNames: ''	classVariableNames: ''	poolDictionaries: ''	category: 'Senku'!!TableroDiamante methodsFor: 'testing' stamp: 'Anonymous 10/30/2021 14:26'!verificarSalto: direccion i: i j: j"verifica si un salto es válido en base a la direccion y la posicion actual"    |pos_validas|    pos_validas:=#(1 2 3 4 5 6 7 8 9 10 11)."(n= 11 array new: n| despues cargar con con un 1 to: n) puede ser"    ((pos_validas includes: i) and: (pos_validas includes: j)) 		ifTrue:[    		(self at: i at: j) estado = '◙' 				ifTrue:[					(direccion=1) 		"Derecha"     	   				ifTrue:[ ((pos_validas includes: j+1) and: (pos_validas includes:j+2)) 											ifTrue:[												((self at: i at:j+1) estado='◙' and: ((self at: i at:j+2) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].				    			(direccion=2) 		"Izquierda"						ifTrue:[ ((pos_validas includes: j-1) and: (pos_validas includes:j-2)) 											ifTrue:[												((self at: i at:j-1) estado='◙' and: ((self at: i at:j-2) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].							(direccion=3) 		"Arriba"							ifTrue:[ ((pos_validas includes: i-1) and: (pos_validas includes:i-2)) 											ifTrue:[												((self at: i-1 at:j) estado='◙' and: ((self at: i-2 at:j) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].									(direccion=4) 		"Abajo"							ifTrue:[ ((pos_validas includes: i+1) and: (pos_validas includes:i+2)) 											ifTrue:[												((self at: i+1 at:j) estado='◙' and: ((self at: i+2 at:j) estado='o')) 															ifTrue:[ ^true ]															ifFalse: [ self mensajeMovInvalido.																		  ^false ].]											ifFalse:[self mensajeMovInvalido.														^false].].]						ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA YA ESTA VACIA' title: 'ERROR'.						 ^false]]		ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA ES INVALIDA' title: 'ERROR'.					^false].! !!TableroDiamante methodsFor: 'printing' stamp: 'Anonymous 10/30/2021 12:54'!mostrarTablero	"metodo que muestra el tablero diamante"	|letras|	Transcript clear.	letras:=('ABCDEFGHIJK').	Transcript cr.	Transcript show: ('       A   B   C   D   E   F   G   H   I   J   K   ').	Transcript cr.	Transcript show: ('                                                  ').	Transcript cr.	Transcript show:('                 ┌───┬───┬───┬───┬───┐ ').	Transcript cr.	Transcript show:' '.   Transcript show: 'A'.  	Transcript show:   '               │'.	4 to:8 do:[:j| Transcript show:' '.                  Transcript show: (self at:1 at:j) estado.                  Transcript show:' │'.].   Transcript cr.	Transcript show:('             ┌───┼───┼───┼───┼───┼───┼───┐ ').	Transcript cr.	Transcript show:' '.   Transcript show: 'B'.  	Transcript show:   '           │'.	3 to:9 do:[:j| Transcript show:' '.                  Transcript show: (self at:2 at:j) estado.                  Transcript show:' │'.].   Transcript cr.	Transcript show:('         ┌───┼───┼───┼───┼───┼───┼───┼───┼───┐ ').	Transcript cr.	Transcript show:' '.   Transcript show: 'C'.  	Transcript show:   '       │'.	2 to:10 do:[:j| Transcript show:' '.                   Transcript show: (self at:3 at:j) estado.                   Transcript show:' │'.].   Transcript cr.	Transcript show:('     ┌───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┐ ').	Transcript cr.	4 to: 8 do:[:i | Transcript show:' '.                    Transcript show: (letras at:i).                    Transcript show:'   │'.                    1 to:11 do:[:j| Transcript show:' '.                                    Transcript show: (self at:i at:j) estado.                                    Transcript show:' │'].                    Transcript cr.						  i<8 ifTrue: [ Transcript show: ('     ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤ ')]					     		ifFalse:[ Transcript show: ('     └───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┘ ') ].                    Transcript cr].	Transcript show:' '.   Transcript show: 'I'.  	Transcript show:   '       │'.	2 to:10 do:[:j| Transcript show:' '.                   Transcript show: (self at:9 at:j) estado.                   Transcript show:' │'.].   Transcript cr.	Transcript show:('         └───┼───┼───┼───┼───┼───┼───┼───┼───┘ ').	Transcript cr.	Transcript show:' '.   Transcript show: 'J'.  	Transcript show:   '           │'.	3 to:9 do:[:j|  Transcript show:' '.                   Transcript show: (self at:10 at:j) estado.                   Transcript show:' │'.].   Transcript cr.	Transcript show:('             └───┼───┼───┼───┼───┼───┼───┘ ').	Transcript cr.	Transcript show:' '.   Transcript show: 'K'.  	Transcript show:   '               │'.	4 to:8 do:[:j|  Transcript show:' '.                   Transcript show: (self at:11 at:j) estado.                   Transcript show:' │'.].   Transcript cr.	Transcript show:('                 └───┴───┴───┴───┴───┘ ').	Transcript cr.! !!TableroDiamante methodsFor: 'loading' stamp: 'Anonymous 10/30/2021 14:42'!cargaTablero
-	"metodo que carga el tableroDiamante"	|fila1_11 fila2_10 fila3_9|	self cant_fichas:  96.	fila1_11:=#(1 11).	fila2_10:=#(2 10).	fila3_9:=#(3 9).	1 to: 11 do: [:i| 		1 to:11 do:[:j |			self at:i at:j put: Ficha new] ]."carga fichas"	fila1_11 do:[:i| 		1 to:3 do:[:j | (self at:i at:j) estado:' '].		4 to:8 do:[:j | (self at:i at:j) estado:'◙'].		9 to:11 do:[:j | (self at:i at:j) estado:' ']].	fila2_10 do:[:i| 		1 to:2 do:[:j | (self at:i at:j) estado:' '].		3 to:9 do:[:j | (self at:i at:j) estado:'◙'].		10 to:11 do:[:j | (self at:i at:j) estado:' ']].	fila3_9 do:[:i| (self at:i at:1) estado:' '.						2 to:10 do:[:j | (self at:i at:j) estado:'◙'].						 (self at:i at:11) estado:' '].	4 to: 8 do:[:i | 		1 to:11 do:[:j| 			(self at:i at:j) estado:'◙'.].]."franja alargada del medio que si se ocupa"	(self at:6 at:6) estado: 'o'.! !
+	! !
+
+
+Tablero subclass: #TableroDiamante
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Senku'!
+
+!TableroDiamante methodsFor: 'testing' stamp: 'Anonymous 10/30/2021 14:26'!
+verificarSalto: direccion i: i j: j
+"verifica si un salto es válido en base a la direccion y la posicion actual"
+    |pos_validas|
+    pos_validas:=#(1 2 3 4 5 6 7 8 9 10 11)."(n= 11 array new: n| despues cargar con con un 1 to: n) puede ser"
+    ((pos_validas includes: i) and: (pos_validas includes: j)) 
+		ifTrue:[
+    		(self at: i at: j) estado = '◙' 
+				ifTrue:[
+					(direccion=1) 		"Derecha"
+     	   				ifTrue:[ ((pos_validas includes: j+1) and: (pos_validas includes:j+2)) 
+											ifTrue:[
+												((self at: i at:j+1) estado='◙' and: ((self at: i at:j+2) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].
+			
+	    			(direccion=2) 		"Izquierda"
+						ifTrue:[ ((pos_validas includes: j-1) and: (pos_validas includes:j-2)) 
+											ifTrue:[
+												((self at: i at:j-1) estado='◙' and: ((self at: i at:j-2) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].
+		
+					(direccion=3) 		"Arriba"
+							ifTrue:[ ((pos_validas includes: i-1) and: (pos_validas includes:i-2)) 
+											ifTrue:[
+												((self at: i-1 at:j) estado='◙' and: ((self at: i-2 at:j) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].
+				
+					(direccion=4) 		"Abajo"
+							ifTrue:[ ((pos_validas includes: i+1) and: (pos_validas includes:i+2)) 
+											ifTrue:[
+												((self at: i+1 at:j) estado='◙' and: ((self at: i+2 at:j) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ self mensajeMovInvalido.
+																		  ^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].]
+			
+			ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA YA ESTA VACIA' title: 'ERROR'.
+						 ^false]]
+		ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA ES INVALIDA' title: 'ERROR'.
+					^false].! !
+
+
+!TableroDiamante methodsFor: 'printing' stamp: 'Anonymous 10/30/2021 12:54'!
+mostrarTablero
+
+	"metodo que muestra el tablero diamante"
+	|letras|
+	Transcript clear.
+	letras:=('ABCDEFGHIJK').
+	Transcript cr.
+	Transcript show: ('       A   B   C   D   E   F   G   H   I   J   K   ').
+	Transcript cr.
+	Transcript show: ('                                                  ').
+	Transcript cr.
+	Transcript show:('                 ┌───┬───┬───┬───┬───┐ ').
+	Transcript cr.
+	Transcript show:' '.
+   Transcript show: 'A'.  
+	Transcript show:   '               │'.
+	4 to:8 do:[:j| Transcript show:' '.
+                  Transcript show: (self at:1 at:j) estado.
+                  Transcript show:' │'.].
+   Transcript cr.
+	Transcript show:('             ┌───┼───┼───┼───┼───┼───┼───┐ ').
+	Transcript cr.
+	Transcript show:' '.
+   Transcript show: 'B'.  
+	Transcript show:   '           │'.
+	3 to:9 do:[:j| Transcript show:' '.
+                  Transcript show: (self at:2 at:j) estado.
+                  Transcript show:' │'.].
+   Transcript cr.
+	Transcript show:('         ┌───┼───┼───┼───┼───┼───┼───┼───┼───┐ ').
+	Transcript cr.
+	Transcript show:' '.
+   Transcript show: 'C'.  
+	Transcript show:   '       │'.
+	2 to:10 do:[:j| Transcript show:' '.
+                   Transcript show: (self at:3 at:j) estado.
+                   Transcript show:' │'.].
+   Transcript cr.
+	Transcript show:('     ┌───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┐ ').
+	Transcript cr.
+	4 to: 8 do:[:i | Transcript show:' '.
+                    Transcript show: (letras at:i).
+                    Transcript show:'   │'.
+                    1 to:11 do:[:j| Transcript show:' '.
+                                    Transcript show: (self at:i at:j) estado.
+                                    Transcript show:' │'].
+                    Transcript cr.
+						  i<8 ifTrue: [ Transcript show: ('     ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤ ')]
+					     		ifFalse:[ Transcript show: ('     └───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┘ ') ].
+                    Transcript cr].
+	Transcript show:' '.
+   Transcript show: 'I'.  
+	Transcript show:   '       │'.
+	2 to:10 do:[:j| Transcript show:' '.
+                   Transcript show: (self at:9 at:j) estado.
+                   Transcript show:' │'.].
+   Transcript cr.
+	Transcript show:('         └───┼───┼───┼───┼───┼───┼───┼───┼───┘ ').
+	Transcript cr.
+	Transcript show:' '.
+   Transcript show: 'J'.  
+	Transcript show:   '           │'.
+	3 to:9 do:[:j|  Transcript show:' '.
+                   Transcript show: (self at:10 at:j) estado.
+                   Transcript show:' │'.].
+   Transcript cr.
+	Transcript show:('             └───┼───┼───┼───┼───┼───┼───┘ ').
+	Transcript cr.
+	Transcript show:' '.
+   Transcript show: 'K'.  
+	Transcript show:   '               │'.
+	4 to:8 do:[:j|  Transcript show:' '.
+                   Transcript show: (self at:11 at:j) estado.
+                   Transcript show:' │'.].
+   Transcript cr.
+	Transcript show:('                 └───┴───┴───┴───┴───┘ ').
+	Transcript cr.! !
+
+
+!TableroDiamante methodsFor: 'loading' stamp: 'Anonymous 10/30/2021 14:42'!
+cargaTablero
+	"metodo que carga el tableroDiamante"
+	|fila1_11 fila2_10 fila3_9|
+	self cant_fichas:  96.
+	fila1_11:=#(1 11).
+	fila2_10:=#(2 10).
+	fila3_9:=#(3 9).
+	1 to: 11 do: [:i| 
+		1 to:11 do:[:j |
+			self at:i at:j put: Ficha new] ]."carga fichas"
+	fila1_11 do:[:i| 
+		1 to:3 do:[:j | (self at:i at:j) estado:' '].
+		4 to:8 do:[:j | (self at:i at:j) estado:'◙'].
+		9 to:11 do:[:j | (self at:i at:j) estado:' ']].
+	fila2_10 do:[:i| 
+		1 to:2 do:[:j | (self at:i at:j) estado:' '].
+		3 to:9 do:[:j | (self at:i at:j) estado:'◙'].
+		10 to:11 do:[:j | (self at:i at:j) estado:' ']].
+	fila3_9 do:[:i| (self at:i at:1) estado:' '.
+						2 to:10 do:[:j | (self at:i at:j) estado:'◙'].
+						 (self at:i at:11) estado:' '].
+	4 to: 8 do:[:i | 
+		1 to:11 do:[:j| 
+			(self at:i at:j) estado:'◙'.].]."franja alargada del medio que si se ocupa"
+	(self at:6 at:6) estado: 'o'.! !
