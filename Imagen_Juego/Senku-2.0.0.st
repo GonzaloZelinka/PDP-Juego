@@ -90,7 +90,7 @@ tipoTablero: argumento
 
 
 Array2D subclass: #Tablero
-	instanceVariableNames: 'cant_fichas'
+	instanceVariableNames: 'cant_fichas tiempo puntaje'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Senku'!
@@ -99,14 +99,52 @@ Esta subclase se encarga del tablero de juego, donde se encuentran el conjunto d
 Sus funciones son: cargar el tablero, mostrarlo y realizar los movimientos de las fichas. !
 
 
+!Tablero methodsFor: 'accesing' stamp: 'Anonymous 10/30/2021 00:01'!
+tiempo: unTiempo
+"Setter del tiempo"
+tiempo:= unTiempo. ! !
+
+
+!Tablero methodsFor: 'accesing' stamp: 'Anonymous 10/30/2021 00:01'!
+tiempo
+"Getter del tiempo"
+^tiempo. ! !
+
+
+!Tablero methodsFor: 'accesing' stamp: 'Anonymous 10/30/2021 00:01'!
+puntaje: unPuntaje
+"Setter del puntaje"
+puntaje:= unPuntaje. ! !
+
+
+!Tablero methodsFor: 'accesing' stamp: 'Anonymous 10/30/2021 00:01'!
+puntaje
+"Getter del puntaje"
+^puntaje. ! !
+
+
+!Tablero methodsFor: 'calculating' stamp: 'Anonymous 10/30/2021 00:01'!
+puntajeIncial: unaCantDeFichas
+	"determina el puntaje inicial del usuario"
+	self tiempo: (Time now hour) * 60 + (Time now minute). 
+	self puntaje: unaCantDeFichas.
+	   ! !
+
+
+!Tablero methodsFor: 'calculating' stamp: 'Anonymous 10/30/2021 00:01'!
+puntajeFinal
+	"determina el puntaje final del usuario"
+	
+	self tiempo: (Time now hour) * 60 + (Time now minute) - tiempo. 
+	self puntaje: ((puntaje - self cant_fichas) * 5) + ((-1) * tiempo).
+	^self puntaje. 
+	   ! !
+
+
 !Tablero methodsFor: 'loading' stamp: 'Anonymous 10/30/2021 12:52'!
-cargaTablero
+cargaTablero: unSenku
 	"metodo que carga el tablero"
-
 	^self subclassResponsibility 
-
-	
-	
 	! !
 
 
@@ -114,6 +152,7 @@ cargaTablero
 mostrarTablero 
 "metodo que muestra el tablero"
 	^self subclassResponsibility ! !
+
 
 !Tablero methodsFor: 'printing' stamp: 'Anonymous 10/28/2021 18:25'!
 mensajeMovInvalido
@@ -133,6 +172,7 @@ seleccionFila
     	title: 'SELECCIONE FILA'.
 	^fila! !
 
+
 !Tablero methodsFor: 'selection' stamp: 'GRUPO5 10/28/2021 12:10'!
 seleccionColumna
 	"Seleccionar la columna que se debe mover la ficha"
@@ -143,6 +183,7 @@ seleccionColumna
     	lines: #(1 2 3 4 5 6 7 8 9 10 11)
     	title: 'SELECCIONE COLUMNA'.
 	^columna! !
+
 
 !Tablero methodsFor: 'selection' stamp: 'GRUPO5 10/28/2021 12:10'!
 seleccionDireccion
@@ -161,6 +202,7 @@ cant_fichas: unValor
 	"modifica la cantidad de fichas"
 	cant_fichas:= unValor.! !
 
+
 !Tablero methodsFor: 'accessing' stamp: 'GRUPO5 10/28/2021 09:27'!
 cant_fichas
 	"modifica la cantidad de fichas"
@@ -172,24 +214,24 @@ verificarSalto: direccion i: i j: j
 	"Metodo no implementado, de verificacion de salto"
 	self subclassResponsibility ! !
 
+
 !Tablero methodsFor: 'testing' stamp: 'Anonymous 10/28/2021 16:38'!
 verificarFinJuego
 	"metodo que se encarga de finalizar el juego"
 	(cant_fichas = 1) 
-	ifTrue: [UIManager default alert: '¡FELICIDADES, HAS GANADO!!' title: 'FIN DEL JUEGO'. 
+	ifTrue: [UIManager default alert: '¡FELICIDADES, HAS GANADO!!
+	 Puntaje: ',(self puntajeFinal) title: 'FIN DEL JUEGO'. 
 				^true]
 	ifFalse:[ 1 to:11 do:[:i| 
 					1 to:11 do:[ :j|
-						1 to:4 do:[ :d| (self verificar_salto: d i: i j: j) ifTrue:[ ^false ].
+						1 to:4 do:[ :d| (self verificarSalto: d i: i j: j) ifTrue:[ ^false ].
 									 ].
 								  ].
 								].
 				].
-	UIManager default alert: 'HAS PERDIDO' title: 'FIN DEL JUEGO'.
+	UIManager default alert: 'HAS PERDIDO
+	 Puntaje: ',(puntajeFinal: self) title: 'FIN DEL JUEGO'.
 	^true
-	
-	
-	
 	! !
 
 
@@ -222,10 +264,55 @@ Tablero class
 nuevo: tipo_tab tamaño: tamaño
 	"Instancia la clase de Tablero segun el tipo seleccionado"
 
-	(tipo_tab = 1) ifTrue:[ ^TableroCuadrado new:tamaño ]. 
-	(tipo_tab = 2) ifTrue:[ ^TableroCruz new:tamaño ]. 
-	(tipo_tab = 3) ifTrue:[ ^TableroDiamante new:tamaño ].! !
+	(tipo_tab = 1) ifTrue:[ puntajeInicial: 120 .^TableroCuadrado new:tamaño ]. 
+	(tipo_tab = 2) ifTrue:[ puntajeInicial: 84 .^TableroCruz new:tamaño ]. 
+	(tipo_tab = 3) ifTrue:[ puntajeInicial: 96 .^TableroDiamante new:tamaño ].
+	! !
 
+!Tablero methodsFor: 'testing' stamp: 'Anonymous 10/30/2021 12:57'!
+verificarVecino: direccion i: i j: j 
+    "verifica si un salto es válido en base a la direccion y la posicion actual"
+    |pos_validas|
+    pos_validas:=#(1 2 3 4 5 6 7 8 9 10 11)."(n= 11 array new: n| despues cargar con con un 1 to: n) puede ser"
+    ((pos_validas includes: i) and: (pos_validas includes: j)) 
+		ifTrue:[
+    		(self at: i at: j) estado = '◙' 
+				ifTrue:[
+					(direccion=1) 		"Derecha"
+     	   				ifTrue:[ ((pos_validas includes: j+1) and: (pos_validas includes:j+2)) 
+											ifTrue:[
+												((self at: i at:j+1) estado='◙' and: ((self at: i at:j+2) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ ^false ].]
+											ifFalse:[^false].].
+			
+	    			(direccion=2) 		"Izquierda"
+						ifTrue:[ ((pos_validas includes: j-1) and: (pos_validas includes:j-2)) 
+											ifTrue:[
+												((self at: i at:j-1) estado='◙' and: ((self at: i at:j-2) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [^false ].]
+											ifFalse:[self mensajeMovInvalido.
+														^false].].
+					(direccion=3) 		"Arriba"
+						ifTrue:[ ((pos_validas includes: i-1) and: (pos_validas includes:i-2)) 
+										ifTrue:[
+											((self at: i-1 at:j) estado='◙' and: ((self at: i-2 at:j) estado='o')) 
+														ifTrue:[ ^true ]
+														ifFalse: [ ^false ].]
+										ifFalse:[^false].].
+					(direccion=4) 		"Abajo"
+							ifTrue:[ ((pos_validas includes: i+1) and: (pos_validas includes:i+2)) 
+											ifTrue:[
+												((self at: i+1 at:j) estado='◙' and: ((self at: i+2 at:j) estado='o')) 
+															ifTrue:[ ^true ]
+															ifFalse: [ ^false ].]
+											ifFalse:[ ^false].].]
+			
+			ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA YA ESTA VACIA' title: 'ERROR'.
+						 ^false]]
+		ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA ES INVALIDA' title: 'ERROR'.
+					^false].! !
 
 Tablero subclass: #TableroCruz
 	instanceVariableNames: ''
@@ -325,8 +412,8 @@ verificarSalto: direccion i: i j: j
 											ifTrue:[
 												((self at: i at:j+1) estado='◙' and: ((self at: i at:j+2) estado='o')) 
 															ifTrue:[ ^true ]
-															ifFalse: [ self mensajeMovInvalido.
-																		  ^false ].]
+															ifFalse: [self mensajeMovInvalido.
+														    		  ^false ].]
 											ifFalse:[self mensajeMovInvalido.
 														^false].].
 			
@@ -360,10 +447,17 @@ verificarSalto: direccion i: i j: j
 											ifFalse:[self mensajeMovInvalido.
 														^false].].]
 			
-			ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA YA ESTA VACIA' title: 'ERROR'.
-						 ^false]]
-		ifFalse: [UIManager default alert: 'LA POSICION SELECCIONADA ES INVALIDA' title: 'ERROR'.
-					^false].! !
+			ifFalse: [(self at: i at: j) estado = 'o'
+				ifTrue: [ UIManager default alert: 'LA POSICION SELECCIONADA YA ESTA VACIA' title: 'ERROR'.
+							^false]
+				ifFalse:[ UIManager default alert: 'LA POSICION SELECCIONADA ES INVALIDA' title: 'ERROR'.
+							^false]]]
+		ifFalse: [ 
+				(self at: i at: j) estado = 'o'
+				ifTrue: [ UIManager default alert: 'LA POSICION SELECCIONADA YA ESTA VACIA' title: 'ERROR'.
+							^false]
+				ifFalse:[ UIManager default alert: 'LA POSICION SELECCIONADA ES INVALIDA' title: 'ERROR'.
+							^false].].! !
 
 
 Tablero subclass: #TableroCuadrado
